@@ -1,0 +1,52 @@
+﻿@page "/"
+@using FlowerShop.Models
+
+<MudText Typo="Typo.h4" Class="mb-6" Align="Align.Center">Хиты продаж</MudText>
+
+<MudGrid Justify="Justify.Center">
+    @foreach (var product in _products)
+    {
+        <MudItem xs="12" sm="6" md="4" lg="3">
+            <MudCard Elevation="2" Class="rounded-lg d-flex flex-column" Style="height: 100%; min-height: 550px;">
+                
+                <MudCardMedia Image="@product.ImageUrl" Height="300"/>
+                
+                <MudCardContent Class="flex-grow-1">
+                    <MudText Typo="Typo.h6" Style="min-height: 3.5em; line-height: 1.2;">
+                        @product.Name
+                    </MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Info">@product.Category</MudText>
+                    
+                    <div class="mt-2">
+                        @if (product.OldPrice > 0)
+                        {
+                            <MudText Typo="Typo.caption" Style="text-decoration: line-through;" Class="grey-text">
+                                @product.OldPrice ₴
+                            </MudText>
+                        }
+                        <MudText Typo="Typo.h5" Color="Color.Primary">@product.Price ₴</MudText>
+                    </div>
+                </MudCardContent>
+                
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" 
+                               Color="Color.Secondary" 
+                               FullWidth="true" 
+                               StartIcon="@Icons.Material.Filled.AddShoppingCart">
+                        В корзину
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    private List<Product> _products = new()
+    {
+        new Product { Id = 1, Name = "Букет 'Королева'", Price = 2759, OldPrice = 3449, Category = "Букеты", IsSpecial = true, ImageUrl = "https://img.flowers.ua/images/Flowers/thumbnail/3094.avif" },
+        new Product { Id = 2, Name = "Цветы в коробке '19 кремовых роз'", Price = 1574, Category = "Букеты", ImageUrl = "https://img.flowers.ua/images/Flowers/thumbnail/3703.avif" },
+        new Product { Id = 3, Name = "Букет 'Нежный оттенок'", Price = 2799, OldPrice = 3999, Category = "Букеты", ImageUrl = "https://img.flowers.ua/images/Flowers/thumbnail/3916.avif" },
+        new Product { Id = 4, Name = "Гигантский бежевый мишка и 25 красных роз'", Price = 4449, Category = "Подарки", ImageUrl = "https://img.flowers.ua/images/Flowers/thumbnail/2822.avif" }
+    };
+}
