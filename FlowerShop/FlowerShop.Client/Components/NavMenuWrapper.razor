@@ -1,0 +1,25 @@
+﻿@using MudBlazor
+
+<MudAppBar Color="Color.Primary" Elevation="1">
+    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => Open = !Open)" />
+    <MudText Typo="Typo.h5" Class="ml-3 product-title" Color="Color.Inherit">FlowerShop</MudText>
+    <MudSpacer/>
+    <MudBadge Content="3" Color="Color.Secondary" Overlap="true" Class="mx-4">
+        <MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Inherit"/>
+    </MudBadge>
+</MudAppBar>
+
+<MudDrawer @bind-Open="@Open" Elevation="1">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">FlowerShop</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Href="/" Match="NavLinkMatch.All">Все товары</MudNavLink>
+        <MudNavLink Href="/new" Match="NavLinkMatch.All">Новинки</MudNavLink>
+        <MudNavLink Href="/bouquets" Match="NavLinkMatch.All">Букеты</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
+@code {
+    private bool Open { get; set; } = false;
+}
